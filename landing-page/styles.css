@@ -1,0 +1,243 @@
+/* Global Styles */
+body {
+    padding-top: 0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #222; /* Dark background for better contrast */
+    color: white; /* Default text color */
+}
+
+/* Navbar */
+.navbar {
+    background-color: #222; /* Dark navbar */
+    transition: all 0.4s ease-in-out;
+}
+
+.navbar-brand {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+.navbar-brand img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    background: linear-gradient(to right, #1A8850, #269709);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: black;  /* Ensuring text is black */
+    padding: 80px 20px;
+}
+
+.hero-section h1 {
+    font-weight: normal;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #212529;
+}
+
+.hero-section .lead {
+    font-size: 1.2rem;
+    font-weight: normal;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #212529; /* Subheading color */
+}
+
+.hero-section .hero-description {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto 20px;
+    color: black;
+}
+
+/* Learn More Button */
+.hero-section .btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 6px;
+    background: white;
+    color: black;
+    border: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.hero-section .btn:hover {
+    background: #ddd;
+}
+
+/* Features Section */
+.features-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #1A8850;
+}
+
+/* Feature Cards */
+.feature-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #269807;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Ensuring Equal Height for All Cards */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-md-4 {
+    display: flex;
+    align-items: stretch;
+}
+
+.card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+}
+
+.card-body {
+    flex-grow: 1;
+}
+
+/* Fade Animations */
+.fade-out {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Footer */
+footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* Navbar Links */
+.navbar .nav-link {
+    color: white !important;
+}
+
+.container {
+    max-width: 100%;
+    padding-left: 10px;
+}
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1A8850;
+}
+
+.card {
+    border: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.text-success {
+    color: #1A8850 !important;
+}
+.features-section {
+    padding-bottom: 0 !important; /* Remove bottom padding */
+    margin-bottom: 0 !important; /* Remove bottom margin */
+}
+
+#how-it-works {
+    padding-top: 40px; /* Reduce top padding */
+    margin-top: -10px; /* Pull it up slightly */
+}
+ /* Additional Header Animation */
+.animated-header {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animated-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Image Zoom on Hover (if not already added) */
+.zoom-hover {
+    transition: transform 0.3s ease-in-out;
+}
+
+.zoom-hover:hover {
+    transform: scale(1.1);
+}
+.navbar .nav-link {
+    position: relative;
+    padding: 10px 15px;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transition: transform 0.3s ease;
+}
+
+.navbar .nav-link:hover::before,
+.navbar .nav-link:focus::before {
+    transform: translateX(-50%) scaleX(1);
+}

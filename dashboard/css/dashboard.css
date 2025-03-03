@@ -1,0 +1,50 @@
+/* Custom Dashboard Styling */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Sidebar Styling */
+  #sidebar-wrapper {
+    width: 250px;
+  }
+  
+  .sidebar-heading {
+    padding: 1rem;
+    font-size: 1.5rem;
+    background: #28a745; /* primary green from AI Nexus theme */
+    color: #fff;
+  }
+  
+  .list-group-item {
+    border: none;
+    transition: background 0.3s;
+  }
+  
+  .list-group-item:hover {
+    background: #f8f9fa;
+  }
+  
+  /* Page Content */
+  #page-content-wrapper {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Section Animations */
+  .section {
+    animation: fadeIn 0.5s;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    #sidebar-wrapper {
+      width: 100%;
+      height: auto;
+    }
+  }
+  
