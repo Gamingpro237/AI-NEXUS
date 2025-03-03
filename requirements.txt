@@ -1,0 +1,11 @@
+vosk==0.3.40
+pyaudio==0.2.14
+openai==1.37.1
+PyPDF2==3.0.1
+keyboard==0.13.5
+requests==2.31.0
+streamlit==1.35.0  
+json5==0.9.14      
+time==1.8          
+tk==0.1.0         
+threading==0.1.3 

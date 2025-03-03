@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Nexus Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+        }
+
+        .feature-icon path {
+            fill: #1A8850 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top animated-header">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold d-flex align-items-center ms-0" href="#">
+                <img src="../assets/logo.png" alt="AI Nexus Logo" class="logo zoom-hover">
+                <span class="ms-2">AI Nexus</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#how-it-works">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-3">AI Nexus: Your Advanced AI-Powered Interview Assistant</h1>
+            <p class="lead">Transforming Interview Preparation with AI</p>
+            <p class="hero-description">
+                AI Nexus helps you ace your interviews with real-time, tailored responses, a built-in teleprompter,
+                and personalized guidance based on your resume.
+            </p>
+            <a href="#features" class="btn btn-success btn-lg me-3">🚀 Get Started</a>
+            <a href="#features" class="btn btn-light btn-lg">Learn More</a>
+        </div>
+    </section>
+    
+
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card feature-card text-center">
+                        <div class="card-body">
+                            <img src="../assets/svgs/interview_response.svg" class="feature-icon" alt="Interview Response">
+                            <h5 class="card-title">Intelligent Interview Response Generation</h5>
+                            <p class="card-text">Real-time AI-generated answers tailored to your interview questions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card text-center">
+                        <div class="card-body">
+                            <img src="../assets/svgs/mic_svg.svg" class="feature-icon" alt="Speech Recognition">
+                            <h5 class="card-title">Speech Recognition Integration</h5>
+                            <p class="card-text">Utilizes the Vosk system for real-time transcription of spoken
+                                questions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card text-center">
+                        <div class="card-body">
+                            <img src="../assets/svgs/teleprompter.svg" class="feature-icon" alt="Teleprompter">
+                            <h5 class="card-title">Teleprompter-Style Display</h5>
+                            <p class="card-text">Show responses on a teleprompter interface to aid confident delivery.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card feature-card text-center">
+                        <div class="card-body">
+                            <img src="../assets/svgs/resume_parsing.svg" class="feature-icon" alt="Resume Parsing">
+                            <h5 class="card-title">Resume Parsing for Contextual Answers</h5>
+                            <p class="card-text">Extracts key information from your resume to provide relevant
+                                responses.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card text-center">
+                        <div class="card-body">
+                            <img src="../assets/svgs/ai_tone.svg" class="feature-icon" alt="AI Personalization">
+                            <h5 class="card-title">AI-Powered Personalization</h5>
+                            <p class="card-text">Adjusts tone and style according to company culture and job
+                                description.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card text-center">
+                        <div class="card-body">
+                            <img src="../assets/svgs/keyboard.svg" class="feature-icon" alt="Keyboard Shortcuts">
+                            <h5 class="card-title">Practice and Control Features</h5>
+                            <p class="card-text">Incorporates controls like keyboard shortcuts to manage practice
+                                sessions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="how-it-works" class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="section-title mb-4">How It Works</h2>
+            <div class="row g-3 align-items-stretch"> <!-- Ensures equal height -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm p-4 h-100"> <!-- h-100 makes all cards same height -->
+                        <h3 class="text-success">Step 1: Resume Data Extraction</h3>
+                        <p class="text-muted">The system reads and extracts key details from your uploaded resume,
+                            analyzing your skills, experience, and job-specific information.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm p-4 h-100">
+                        <h3 class="text-success">Step 2: Real-Time Question Transcription</h3>
+                        <p class="text-muted">Using Vosk Speech Recognition, the app listens and transcribes interview
+                            questions in real-time, providing a hands-free experience.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm p-4 h-100">
+                        <h3 class="text-success">Step 3: Contextual Response Generation</h3>
+                        <p class="text-muted">The AI processes the transcribed questions and instantly generates
+                            structured responses, displaying them on a teleprompter-style interface.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="testimonials" class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="section-title mb-4">What Our Users Say</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <p class="card-text">"AI Nexus helped me ace my job interview! The AI responses were spot on."</p>
+                        <h5 class="card-title">- Rahul S.</h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <p class="card-text">"The resume parsing feature gave me tailored answers that improved my confidence!"</p>
+                        <h5 class="card-title">- Priya M.</h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <p class="card-text">"A game-changer for interview prep! Highly recommended."</p>
+                        <h5 class="card-title">- Ankit T.</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Contact & Support Section -->
+<section id="contact" class="py-5">
+    <div class="container text-center">
+        <h2 class="section-title mb-4">Contact & Support</h2>
+        <p>Need help? Join our community or reach out to us directly.</p>
+        
+        <!-- Telegram Support -->
+        <p><strong>📢 Telegram Support Group:</strong> 
+            <a href="https://t.me/yourgroup" target="_blank">Join Here</a>
+        </p>
+        
+        <!-- Email Support -->
+        <p><strong>📧 Email Support:</strong> 
+            <a href="mailto:support@ainexus.com">support@ainexus.com</a>
+        </p>
+
+        <!-- YouTube Setup Tutorial with Embedded Video -->
+        <!-- YouTube Setup Tutorial with Embedded Video (Smaller Size) -->
+<div class="mt-4">
+    <h4>🎥 Setup Tutorial</h4>
+    <div style="max-width: 480px; margin: 0 auto;">
+        <div class="ratio ratio-16x9">
+            <iframe width="480" height="270" 
+                src="https://www.youtube.com/embed/WN9aiMDKxFw" 
+                title="AI Nexus Setup Tutorial" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Call to Action Button -->
+        <a href="#features" class="btn btn-success btn-lg mt-3">Get Started</a>
+    </div>
+</section>
+    
+<!-- Donations Section -->
+<section class="donations-section text-center py-5">
+    <div class="container">
+        <h2 class="section-title">Support Our Project</h2>
+        <p class="lead">Help us improve and expand by making a donation.</p>
+        <a href="#" class="btn btn-success">Donate Now</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container text-center">
+        <p>&copy; 2024 AI Nexus. All Rights Reserved.</p>
+        <p>
+            <a href="#">Terms of Service</a> | 
+            <a href="#">Privacy Policy</a>
+        </p>
+    </div>
+</footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const header = document.querySelector('.animated-header');
+            // Add the class after a short delay (or use IntersectionObserver if you prefer)
+            setTimeout(() => {
+                header.classList.add('visible');
+            }, 200);
+        });
+      </script>
+      
+</body>
+
+</html>
