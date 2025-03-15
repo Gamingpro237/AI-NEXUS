@@ -3,6 +3,19 @@ from typing import Optional
 from datetime import datetime
 from database import get_connection, release_connection
 import bcrypt
+from pydantic import BaseModel
+
+# Define request models
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+# Define registration request model
+class RegisterRequest(BaseModel):
+    email: str
+    password: str
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
 
 app = FastAPI(title="Nexus API with Psycopg2")
 
@@ -10,7 +23,7 @@ app = FastAPI(title="Nexus API with Psycopg2")
 # 1) nexus_users
 # ------------------------------------------------------------------------------
 @app.post("/register")
-def register_user(email: str, password: str, first_name: Optional[str] = None, last_name: Optional[str] = None):
+def register_user(request: RegisterRequest):
     """
     Registers a new user, hashes their password before storing in database.
     """
@@ -18,19 +31,19 @@ def register_user(email: str, password: str, first_name: Optional[str] = None, l
     try:
         with conn.cursor() as cur:
             # Check if email already exists
-            cur.execute("SELECT id FROM nexus_users WHERE email = %s", (email,))
+            cur.execute("SELECT id FROM nexus_users WHERE email = %s", (request.email,))
             existing = cur.fetchone()
             if existing:
                 raise HTTPException(status_code=400, detail="Email already exists.")
 
             # Hash password before storing
-            hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+            hashed_password = bcrypt.hashpw(request.password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
 
             cur.execute("""
                 INSERT INTO nexus_users (email, password_hash, first_name, last_name, created_at)
                 VALUES (%s, %s, %s, %s, %s)
                 RETURNING id, email, first_name, last_name, created_at
-            """, (email, hashed_password, first_name, last_name, datetime.utcnow()))
+            """, (request.email, hashed_password, request.first_name, request.last_name, datetime.utcnow()))
 
             new_user = cur.fetchone()
             conn.commit()
@@ -46,24 +59,30 @@ def register_user(email: str, password: str, first_name: Optional[str] = None, l
         release_connection(conn)
 
 @app.post("/login")
-def login_user(email: str, password: str):
+def login_user(login_data: LoginRequest):
     """
     Authenticates a user by verifying email and password.
     """
+    print(f"Login request received with email: {login_data.email}")
     conn = get_connection()
     try:
         with conn.cursor() as cur:
-            cur.execute("SELECT id, email, password_hash, first_name, last_name FROM nexus_users WHERE email = %s", (email,))
+            print(f"Executing SQL query to find user with email: {login_data.email}")
+            cur.execute("SELECT id, email, password_hash, first_name, last_name FROM nexus_users WHERE email = %s", (login_data.email,))
             user = cur.fetchone()
 
             if not user:
+                print(f"User with email {login_data.email} not found")
                 raise HTTPException(status_code=401, detail="Invalid email or password")
 
+            print(f"User found: {user[1]}")
             stored_hashed_password = user[2]
             # Verify password
-            if not bcrypt.checkpw(password.encode("utf-8"), stored_hashed_password.encode("utf-8")):
+            if not bcrypt.checkpw(login_data.password.encode("utf-8"), stored_hashed_password.encode("utf-8")):
+                print("Password verification failed")
                 raise HTTPException(status_code=401, detail="Invalid email or password")
 
+            print("Authentication successful, returning user data")
         return {
             "message": "Login successful",
             "user": {
@@ -73,6 +92,9 @@ def login_user(email: str, password: str):
                 "last_name": user[4]
             }
         }
+    except Exception as e:
+        print(f"Error during login: {str(e)}")
+        raise
     finally:
         release_connection(conn)
 

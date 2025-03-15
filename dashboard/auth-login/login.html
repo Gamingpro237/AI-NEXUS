@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login AI Nexus</title>
   <!-- Link to your CSS file -->
-  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="/auth-login/login.css" />
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
   <!-- Google Identity Services for SSO (if needed) -->
@@ -19,7 +19,7 @@
   
   <!-- Login Box Wrapper -->
   <div class="login-wrapper">
-    <form class="login-form" id="loginForm" action="/login" method="POST">
+    <form class="login-form" id="loginForm">
       <h2>Login</h2>
       <div class="form-group">
         <label for="email">Email Address</label>
@@ -55,10 +55,10 @@
       </div>
       
       <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Log In</button>
-        <a href="/forgot-password/forgot.html" class="forgot-password">Forgot Password?</a>
+        <button type="submit" class="btn btn-primary" id="loginButton">Log In</button>
+        <a href="/forgot-password" class="forgot-password">Forgot Password?</a>
       </div>
-      <p class="signup-link">Don't have an account? <a href="/register/register.html">Sign Up</a></p>
+      <p class="signup-link">Don't have an account? <a href="/register">Sign Up</a></p>
     </form>
     
     <!-- SSO Container -->
@@ -70,6 +70,6 @@
   </div>
   
   <!-- Link to external JavaScript file -->
-  <script src="login.js"></script>
+  <script src="/auth-login/login.js"></script>
 </body>
 </html>

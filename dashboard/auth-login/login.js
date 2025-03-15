@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const passwordError = document.getElementById("passwordError");
     const strengthBar = document.getElementById("strengthBar");
     const strengthText = document.getElementById("strengthText");
+    const loginButton = document.getElementById("loginButton");
   
     // Simple email regex for validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -44,7 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   
     // Validate form on submit
-    loginForm.addEventListener("submit", function (e) {
+    loginForm.addEventListener("submit", async function (e) {
+      e.preventDefault(); // Always prevent default form submission
+      
       let valid = true;
   
       // Clear previous error messages
@@ -65,8 +68,92 @@ document.addEventListener("DOMContentLoaded", function () {
         valid = false;
       }
   
-      if (!valid) {
-        e.preventDefault(); // Prevent form submission if validation fails
+      if (valid) {
+        try {
+          // Show loading state
+          loginButton.disabled = true;
+          loginButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+          
+          // Call the backend API for login
+          console.log('Sending login request with data:', {
+            email: emailInput.value,
+            password: passwordInput.value
+          });
+          
+          try {
+            const response = await fetch('/api/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: emailInput.value,
+                password: passwordInput.value
+              })
+            });
+            
+            console.log('Login response status:', response.status);
+            
+            // Check if the response is empty
+            const responseText = await response.text();
+            console.log('Raw response:', responseText);
+            
+            let data;
+            if (responseText) {
+              try {
+                data = JSON.parse(responseText);
+                console.log('Login response data:', data);
+              } catch (parseError) {
+                console.error('Error parsing JSON response:', parseError);
+                throw new Error('Invalid response from server');
+              }
+            } else {
+              console.error('Empty response from server');
+              throw new Error('Empty response from server');
+            }
+            
+            if (response.ok) {
+              // Store user data in localStorage for session management
+              console.log('Login successful! Storing user data and redirecting to dashboard');
+              localStorage.setItem('user', JSON.stringify(data.user));
+              
+              // Add a small delay before redirect to ensure localStorage is set
+              setTimeout(() => {
+                console.log('Redirecting to dashboard...');
+                window.location.href = '/';
+              }, 500);
+            } else {
+              // Display error message
+              const errorMessage = data?.detail || "Login failed. Please check your credentials.";
+              passwordError.textContent = errorMessage;
+              passwordError.style.display = "block";
+              
+              // Add a note about the valid test account
+              if (errorMessage.includes("Invalid email or password")) {
+                const noteElement = document.createElement('p');
+                noteElement.className = 'login-note';
+                noteElement.innerHTML = '<small>Try using email: <strong>hoang.nv.ral@gmail.com</strong> with password: <strong>123456a@</strong></small>';
+                passwordError.parentNode.insertBefore(noteElement, passwordError.nextSibling);
+              }
+            }
+          } catch (error) {
+            console.error('Login error:', error);
+            passwordError.textContent = "An error occurred during login: " + error.message;
+            passwordError.style.display = "block";
+          } finally {
+            // Reset loading state
+            loginButton.disabled = false;
+            loginButton.innerHTML = 'Log In';
+          }
+        } catch (error) {
+          console.error('Login error:', error);
+          passwordError.textContent = "An error occurred during login. Please try again.";
+          passwordError.style.display = "block";
+          
+          // Reset loading state
+          loginButton.disabled = false;
+          loginButton.innerHTML = 'Log In';
+        }
       }
     });
   });
@@ -97,9 +184,3 @@ document.addEventListener("DOMContentLoaded", function () {
       icon.classList.add('fa-eye');
     }
   }
-  document.getElementById('loginForm').addEventListener('submit', (e) => {
-    // Show spinner, disable button
-    document.getElementById('loginButton').disabled = true;
-    // Possibly add spinner class or text
-  });
-  

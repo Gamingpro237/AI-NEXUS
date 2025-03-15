@@ -21,7 +21,7 @@
 
 
         <!-- Registration Form -->
-        <form class="register-form" id="registerForm" action="/register" method="POST">
+        <form class="register-form" id="registerForm">
             <h2>Create Account</h2>
 
             <div class="form-group">
@@ -31,8 +31,8 @@
             </div>
 
             <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="you@example.com" required />
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="example@example.com" required />
                 <span class="error" id="emailError"></span>
             </div>
 
@@ -43,22 +43,66 @@
             </div>
 
             <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password"
-                    required />
+                <label for="confirmPassword">Retype Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Retype your password" required />
                 <span class="error" id="confirmPasswordError"></span>
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <button type="submit" class="btn btn-primary">Register</button>
             </div>
 
             <p class="login-link">
-                Already have an account? <a href="/auth-login/login.html">Log In</a>
+                Already have an account? <a href="/login">Log In</a>
             </p>
         </form>
     </div>
 
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match. Please try again.');
+                return;
+            }
+
+            // Split fullName into first_name and last_name
+            const [first_name, ...last_name] = fullName.split(' ');
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password,
+                        first_name,
+                        last_name: last_name.join(' ')
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Registration successful!');
+                    window.location.href = '/login';
+                } else {
+                    alert('Registration failed: ' + (data.detail || 'Please check your input.'));
+                }
+            } catch (error) {
+                console.error('Error during registration:', error);
+                alert('An error occurred during registration. Please try again later.');
+            }
+        });
+    </script>
     <!-- Link to your JavaScript file -->
     <script src="register.js"></script>
 </body>
