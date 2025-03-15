@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Responder Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="script.js" defer></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar collapsed" id="sidebar">
+            <div class="sidebar-sticky" >
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" data-section="dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span class="link-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="interview-sessions">
+                            <i class="fas fa-comments"></i> 
+                            <span class="link-text">Interview Sessions</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="question-analysis">
+                            <i class="fas fa-question-circle"></i>
+                            <span class="link-text">Question Analysis</span> 
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="response-analysis">
+                            <i class="fas fa-reply"></i> 
+                            <span class="link-text">Response Analysis</span> 
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="user-feedback">
+                            <i class="fas fa-star"></i> 
+                            <span class="link-text">User Feedback</span> 
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="model-configuration">
+                            <i class="fas fa-cogs"></i> 
+                            <span class="link-text">Model Configuration</span> 
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="settings">
+                            <i class="fas fa-sliders-h"></i> 
+                            <span class="link-text">Settings</span> 
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="main-content sidebar-collapsed" id="main-content">
+            <div class="top-bar">
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="page-title">
+                    <h1>Dashboard Overview</h1>
+                </div>
+                <div class="user-actions">
+                    <button id="dark-mode-btn" class="btn btn-outline dark-mode-btn">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-download"></i> Export Data
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i> New Interview
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Overview Section -->
+            <div class="dashboard-section" id="dashboard">
+                <!-- KPI Cards -->
+                <div class="kpi-container">
+                    <div class="kpi-card">
+                        <div class="kpi-title">Accuracy Score</div>
+                        <div class="kpi-value">88.7%</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i> 2.3% from last week
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Avg. Response Time</div>
+                        <div class="kpi-value">1.2s</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-down"></i> 0.3s from last week
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Total Sessions</div>
+                        <div class="kpi-value">1,248</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i> 156 from last week
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Positive Feedback</div>
+                        <div class="kpi-value">76.2%</div>
+                        <div class="kpi-change negative">
+                            <i class="fas fa-arrow-down"></i> 1.5% from last week
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts & Data -->
+                <div class="dashboard-grid">
+                    <!-- Performance Over Time (Spans 3 KPI Blocks) -->
+                    <div class="col-8">
+                        <div class="card performance-metrics" style="grid-column: span 9;">
+                            <div class="card-header">
+                                <h2>Performance Metrics Over Time</h2>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline">
+                                        <i class="fas fa-filter"></i> Filter
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="performanceChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question Categories (Below Positive Feedback) -->
+                    <div class="col-4">
+                        <div class="card question-categories" style="grid-column: span 3; grid-row-start: 2;">
+                            <div class="card-header">
+                                <h2>Question Categories</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="categoryChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Sessions -->
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Recent Interview Sessions</h2>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline">
+                                        <i class="fas fa-eye"></i> View All
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <ul class="session-list">
+                                    <li class="session-item">
+                                        <div class="session-info">
+                                            <div class="session-id">Session #1248</div>
+                                            <div class="session-date">Today, 10:45 AM</div>
+                                        </div>
+                                        <div class="session-metrics">
+                                            <div class="session-metric">
+                                                <div class="metric-value">94%</div>
+                                                <div class="metric-label">Accuracy</div>
+                                            </div>
+                                            <div class="session-metric">
+                                                <div class="metric-value">12</div>
+                                                <div class="metric-label">Questions</div>
+                                            </div>
+                                            <div class="session-metric">
+                                                <div class="metric-value">8m 15s</div>
+                                                <div class="metric-label">Duration</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="session-item">
+                                        <div class="session-info">
+                                            <div class="session-id">Session #1247</div>
+                                            <div class="session-date">Today, 09:13 AM</div>
+                                        </div>
+                                        <div class="session-metrics">
+                                            <div class="session-metric">
+                                                <div class="metric-value">87%</div>
+                                                <div class="metric-label">Accuracy</div>
+                                            </div>
+                                            <div class="session-metric">
+                                                <div class="metric-value">9</div>
+                                                <div class="metric-label">Questions</div>
+                                            </div>
+                                            <div class="session-metric">
+                                                <div class="metric-value">6m 47s</div>
+                                                <div class="metric-label">Duration</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="session-item">
+                                        <div class="session-info">
+                                            <div class="session-id">Session #1246</div>
+                                            <div class="session-date">Yesterday, 16:22 PM</div>
+                                        </div>
+                                        <div class="session-metrics">
+                                            <div class="session-metric">
+                                                <div class="metric-value">91%</div>
+                                                <div class="metric-label">Accuracy</div>
+                                            </div>
+                                            <div class="session-metric">
+                                                <div class="metric-value">15</div>
+                                                <div class="metric-label">Questions</div>
+                                            </div>
+                                            <div class="session-metric">
+                                                <div class="metric-value">12m 33s</div>
+                                                <div class="metric-label">Duration</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Common Words -->
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Common Question Keywords</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="word-cloud">
+                                    <div class="word-cloud-item" style="font-size: 1.8rem;">experience</div>
+                                    <div class="word-cloud-item" style="font-size: 1.6rem;">skills</div>
+                                    <div class="word-cloud-item" style="font-size: 1.5rem;">challenges</div>
+                                    <div class="word-cloud-item" style="font-size: 1.4rem;">leadership</div>
+                                    <div class="word-cloud-item" style="font-size: 1.3rem;">team</div>
+                                    <div class="word-cloud-item" style="font-size: 1.2rem;">project</div>
+                                    <div class="word-cloud-item" style="font-size: 1.2rem;">success</div>
+                                    <div class="word-cloud-item" style="font-size: 1.1rem;">failure</div>
+                                    <div class="word-cloud-item" style="font-size: 1.1rem;">goals</div>
+                                    <div class="word-cloud-item" style="font-size: 1rem;">strength</div>
+                                    <div class="word-cloud-item" style="font-size: 1rem;">weakness</div>
+                                    <div class="word-cloud-item" style="font-size: 0.9rem;">career</div>
+                                    <div class="word-cloud-item" style="font-size: 0.9rem;">motivation</div>
+                                    <div class="word-cloud-item" style="font-size: 0.8rem;">education</div>
+                                    <div class="word-cloud-item" style="font-size: 0.8rem;">salary</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Response Examples -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Recent AI Responses</h2>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline">
+                                        <i class="fas fa-sort"></i> Sort by
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="response-card">
+                                    <div class="response-header">
+                                        <div class="question-text">Tell me about a time you had to deal with a
+                                            challenging team situation.</div>
+                                        <div class="response-score score-high">
+                                            <i class="fas fa-check-circle"></i> 94% Accuracy
+                                        </div>
+                                    </div>
+                                    <div class="response-content">
+                                        "In my previous role as a project manager, I encountered a challenging team
+                                        situation when two key team members had conflicting approaches to
+                                        implementing a critical feature. I addressed this by first listening to both
+                                        perspectives individually, then facilitating a collaborative meeting where
+                                        we mapped out the pros and cons of each approach. By focusing on project
+                                        objectives rather than personal preferences, we were able to develop a
+                                        hybrid solution that incorporated the strengths of both approaches. The
+                                        situation taught me the importance of focusing on shared goals and fostering
+                                        open communication when resolving team conflicts."
+                                    </div>
+                                </div>
+                                <div class="response-card">
+                                    <div class="response-header">
+                                        <div class="question-text">What are your greatest strengths and weaknesses?
+                                        </div>
+                                        <div class="response-score score-medium">
+                                            <i class="fas fa-check-circle"></i> 76% Accuracy
+                                        </div>
+                                    </div>
+                                    <div class="response-content">
+                                        "My greatest strength is my analytical thinking capability, which allows me
+                                        to break down complex problems into manageable components and develop
+                                        effective solutions. I'm also highly adaptable and can quickly adjust to
+                                        changing priorities and circumstances, which has proven valuable in
+                                        fast-paced work environments. As for weaknesses, I tend to be overly
+                                        detail-oriented at times, which can impact my efficiency with certain tasks.
+                                        I've been addressing this by implementing better time management strategies
+                                        and focusing on prioritizing tasks based on their impact and urgency."
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feedback Analysis -->
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>User Feedback Analysis</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="feedbackChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Improvement Areas -->
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Areas for Improvement</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="improvementChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interview Sessions Section -->
+            <div class="dashboard-section" id="interview-sessions" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Interview Sessions</h2>
+                        <div class="card-actions">
+                            <button class="btn btn-outline">
+                                <i class="fas fa-filter"></i> Filter
+                            </button>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-plus"></i> New Session
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Content for Interview Sessions -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Analysis Section -->
+            <div class="dashboard-section" id="question-analysis" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Question Analysis</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Content for Question Analysis -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Response Analysis Section -->
+            <div class="dashboard-section" id="response-analysis" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Response Analysis</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Content for Response Analysis -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Feedback Section -->
+            <div class="dashboard-section" id="user-feedback" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>User Feedback</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Content for User Feedback -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Configuration Section -->
+            <div class="dashboard-section" id="model-configuration" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Model Configuration</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Content for Model Configuration -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+         <!-- Settings Section -->
+<div class="dashboard-section" id="settings" style="display: none;">
+    <div class="card settings-card">
+      <div class="card-header">
+        <h2>Settings</h2>
+      </div>
+      <div class="card-body">
+        <!-- Tabs for different settings categories -->
+        <div class="settings-tabs">
+          <button class="settings-tab active" data-tab="profile-tab">Profile</button>
+          <button class="settings-tab" data-tab="general-tab">General</button>
+          <button class="settings-tab" data-tab="security-tab">Security</button>
+          <button class="settings-tab" data-tab="notifications-tab">Notifications</button>
+          <button class="settings-tab" data-tab="account-tab">Account Linking</button>
+        </div>
+        
+        <!-- Settings Content Sections -->
+        <div class="settings-content">
+          <!-- Profile Settings -->
+          <div class="settings-section active" id="profile-tab">
+            <h3>Profile Settings</h3>
+            <div class="profile-card">
+              <div class="profile-avatar">
+                <!-- Replace with dynamic user image URL or a default avatar -->
+                <img src="avatar-placeholder.png" alt="User Avatar" />
+              </div>
+              <div class="profile-info">
+                <form id="profileForm" action="/update-profile" method="POST">
+                  <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" value="John Doe" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="emailProfile">Email Address</label>
+                    <input type="email" id="emailProfile" name="emailProfile" value="john.doe@example.com" required />
+                  </div>
+                  <!-- Optional: Password change field -->
+                  <div class="form-group">
+                    <label for="newPassword">New Password <small>(Leave blank to keep current password)</small></label>
+                    <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password" />
+                  </div>
+                  <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <!-- General Settings -->
+          <div class="settings-section" id="general-tab">
+            <h3>General Settings</h3>
+            <div class="form-group">
+              <label for="language">Language</label>
+              <select id="language" name="language">
+                <option value="en" selected>English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <!-- Add more languages as needed -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="theme">Theme</label>
+              <select id="theme" name="theme">
+                <option value="light" selected>Light</option>
+                <option value="dark">Dark</option>
+              </select>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-primary">Save General Settings</button>
+            </div>
+          </div>
+          
+          <!-- Security Settings -->
+          <div class="settings-section" id="security-tab">
+            <h3>Security Settings</h3>
+            <div class="form-group">
+              <label for="currentPassword">Current Password</label>
+              <input type="password" id="currentPassword" name="currentPassword" placeholder="Enter current password" required />
+            </div>
+            <div class="form-group">
+              <label for="newPasswordSecurity">New Password</label>
+              <input type="password" id="newPasswordSecurity" name="newPasswordSecurity" placeholder="Enter new password" required />
+            </div>
+            <div class="form-group">
+              <label for="confirmNewPassword">Confirm New Password</label>
+              <input type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm new password" required />
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-primary">Update Password</button>
+            </div>
+            <!-- Future enhancement: Add Two-Factor Authentication options -->
+          </div>
+          
+          <!-- Notifications Settings -->
+          <div class="settings-section" id="notifications-tab">
+            <h3>Notification Settings</h3>
+            <div class="form-group">
+              <label for="emailNotifications">Email Notifications</label>
+              <input type="checkbox" id="emailNotifications" name="emailNotifications" checked />
+            </div>
+            <div class="form-group">
+              <label for="pushNotifications">Push Notifications</label>
+              <input type="checkbox" id="pushNotifications" name="pushNotifications" />
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-primary">Save Notification Settings</button>
+            </div>
+          </div>
+          
+          <!-- Account Linking Settings -->
+          <div class="settings-section" id="account-tab">
+            <h3>Account Linking</h3>
+            <p>You can link your account with your preferred SSO providers:</p>
+            <div class="account-linking">
+              <button type="button" class="btn btn-sso google" onclick="handleGoogleSignIn()">
+                <i class="fab fa-google"></i> Link Google Account
+              </button>
+              <!-- Add additional buttons for other providers -->
+            </div>
+          </div>
+        </div>
+        
+        <!-- Logout Button -->
+        <div class="logout-section">
+          <button type="button" class="btn btn-outline logout-btn" onclick="handleLogout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+        </div>
+
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+/* Root Variables */
+:root {
+    --primary: #4361ee;
+    --light: #f8f9fa;
+    --text-primary: #212529;
+    --border: #dee2e6;
+    --transition: all 0.3s ease;
+  }
+  
+  /* Basic Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Body Styling */
+  body {
+    background-color: var(--light);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  .page-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+}
+  /* Logo Styling */
+  .logo {
+    font-size: 1.5rem;
+    color: var(--primary);
+
+  }
+  .logo .large-letter {
+    display: inline-block;
+    font-size: 2.5rem;
+    vertical-align: middle;
+    transform: translateY(-0.09em);
+  }
+  
+  /* Forgot Password Wrapper */
+  .forgot-wrapper {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    width: 100%;
+    max-width: 400px;
+    transition: var(--transition);
+    margin-top: 80px; /* to provide space for header */
+  }
+  
+  /* Forgot Password Form */
+  .forgot-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+  }
+  
+  .forgot-form p {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  
+  .error {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    display: none;
+  }
+  
+  /* Form Actions */
+  .form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .btn-primary {
+    background-color: var(--primary);
+    color: #fff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #3650b3;
+  }
+  
+  /* Login Link */
+  .login-link {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  
+  .login-link a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 480px) {
+    .forgot-wrapper {
+      padding: 1.5rem;
+    }
+  }
+  
