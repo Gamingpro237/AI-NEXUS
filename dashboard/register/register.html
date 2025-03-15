@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - My Project</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="register.css" />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+</head>
+
+<body>
+    <!-- Page Header outside the login box -->
+    <header class="page-header">
+        <div class="logo">AI NE<span class="large-letter">X</span>US</div>
+    </header>
+    <div class="register-container">
+        <!-- Top-left logo or title -->
+
+
+        <!-- Registration Form -->
+        <form class="register-form" id="registerForm" action="/register" method="POST">
+            <h2>Create Account</h2>
+
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="John Doe" required />
+                <span class="error" id="fullNameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required />
+                <span class="error" id="emailError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required />
+                <span class="error" id="passwordError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password"
+                    required />
+                <span class="error" id="confirmPasswordError"></span>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+
+            <p class="login-link">
+                Already have an account? <a href="/auth-login/login.html">Log In</a>
+            </p>
+        </form>
+    </div>
+
+    <!-- Link to your JavaScript file -->
+    <script src="register.js"></script>
+</body>
+
+</html>

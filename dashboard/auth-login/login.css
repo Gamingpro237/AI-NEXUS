@@ -1,0 +1,236 @@
+/* Root Variables */
+:root {
+    --primary: #4361ee;
+    --light: #f8f9fa;
+    --text-primary: #212529;
+    --border: #dee2e6;
+    --transition: all 0.3s ease;
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: var(--light);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Page Header */
+.page-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+}
+
+/* Login Wrapper */
+.login-wrapper {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    width: 100%;
+    max-width: 400px;
+    transition: var(--transition);
+    margin-top: 80px;  /* Gives space for the header */
+}
+
+/* Login Form */
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.error {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    display: none;
+}
+
+/* Password Strength Meter */
+.password-strength {
+    margin-top: 0.5rem;
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    background-color: red;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-text {
+    display: block;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    text-align: right;
+    color: var(--primary);
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #3650b3;
+}
+
+.forgot-password {
+    font-size: 0.9rem;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Signup Link */
+.signup-link {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.signup-link a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* SSO Container */
+.sso-container {
+    display: flex;
+    justify-content: flex-end;  /* Right align the SSO button */
+    margin-top: 1.5rem;
+    margin-right: 10px;  /* Adjust horizontal spacing as needed */
+}
+
+.btn-sso {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-right: 45px;
+}
+
+.btn-sso.google {
+    background-color: #db4437;
+    color: #fff;
+}
+
+.btn-sso.google:hover {
+    background-color: #c33d2f;
+}
+
+.btn-sso i {
+    margin-left: 0.5rem; /* space between text and icon */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+    .login-wrapper {
+      padding: 1.5rem;
+    }
+}
+
+.logo {
+    font-size: 1.5rem; /* Base font size for normal letters */
+    color: #4361ee;
+}
+
+.logo .large-letter {
+    display: inline-block;   /* Allows transform to work on the letter alone */
+    font-size: 2.5rem;       /* Make the X bigger */
+    vertical-align: middle;  /* Helps align with surrounding text */
+    transform: translateY(-0.09em);
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 40px; /* extra space for the toggle button */
+}
+
+.toggle-visibility {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
