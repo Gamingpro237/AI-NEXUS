@@ -55,7 +55,9 @@ openai.api_key = "your_openai_api_key"
 
 🚀 Running the Backend
 
+```bash
 python app.py
+```
 
 This will start the server at:
 📌 http://127.0.0.1:5000/
@@ -71,10 +73,11 @@ Endpoint: POST /start_interview
 
 Payload:
 
+```json
 {
   "level": "easy"  // Options: "easy", "medium", "hard"
 }
-
+```
 Response:
 
 {
