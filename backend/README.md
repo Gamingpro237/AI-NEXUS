@@ -79,12 +79,12 @@ Payload:
 }
 ```
 Response:
-
+```json
 {
   "question": "Tell me about yourself.",
   "time_limit": 900
 }
-
+```
 
 
 ---
@@ -94,19 +94,19 @@ Response:
 Endpoint: POST /submit_answer
 
 Payload:
-
+```json
 {
   "answer": "I am a software engineer with 3 years of experience...",
   "level": "medium"
 }
-
+```
 Response:
-
+```json
 {
   "score": 78,
   "feedback": "Good answer! Try connecting your response more to your skills."
 }
-
+```
 
 
 ---
@@ -116,7 +116,7 @@ Response:
 Endpoint: GET /resume_questions
 
 Response:
-
+```json
 {
   "questions": [
     "Can you describe your experience with Python development?",
@@ -124,7 +124,7 @@ Response:
     "Tell me about a project where you used problem-solving skills."
   ]
 }
-
+```
 
 
 ---
@@ -134,12 +134,12 @@ Response:
 Endpoint: GET /interview_insights
 
 Response:
-
+```json
 {
   "average_score": 82.5,
   "insights": "Your interview skills are strong. Focus on elaborating on leadership experiences."
 }
-
+```
 
 
 ---
@@ -149,17 +149,17 @@ Response:
 Endpoint: POST /interview_coach
 
 Payload:
-
+```json
 {
   "message": "How can I improve my answers for technical interviews?"
 }
-
+```
 Response:
-
+```json
 {
   "advice": "Focus on structuring your responses using the STAR method (Situation, Task, Action, Result)."
 }
-
+```
 
 
 ---
@@ -169,17 +169,17 @@ Response:
 Endpoint: POST /set_voice
 
 Payload:
-
+```json
 {
   "voice": "en"  // Change to preferred language code
 }
-
+```
 Response:
-
+```json
 {
   "message": "Voice preference saved!"
 }
-
+```
 
 
 ---
@@ -189,20 +189,21 @@ Response:
 Endpoint: POST /get_voice
 
 Payload:
-
+```json
 {
   "question": "What are your greatest strengths?"
 }
-
+```
 Response:
-
+```json
 {
   "audio_url": "/audio/user_ai_voice.mp3"
 }
-
+```
 🔊 Access Audio File:
+```bash
 Open http://127.0.0.1:5000/audio/user_ai_voice.mp3 in your browser.
-
+```
 
 
 ---
@@ -212,17 +213,17 @@ Open http://127.0.0.1:5000/audio/user_ai_voice.mp3 in your browser.
 Endpoint: POST /chat
 
 Payload:
-
+```json
 {
   "message": "What are common mistakes in technical interviews?"
 }
-
+```
 Response:
-
+```json
 {
   "reply": "Common mistakes include lack of preparation, failing to explain thought processes, and not asking questions."
 }
-
+```
 
 
 ---
@@ -232,6 +233,6 @@ Response:
 Using Flask in Production
 
 For a production setup, use Gunicorn:
-
-pip install gunicorn
+```
 gunicorn -w 4 -b 0.0.0.0:5000 app:app
+```
