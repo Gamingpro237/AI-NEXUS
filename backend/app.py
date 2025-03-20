@@ -158,7 +158,7 @@ def chat():
     user_message = request.json.get("message", "")
 
     response = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="GPT-3_5 Turbo",
         messages=[{"role": "user", "content": user_message}]
     )
 
