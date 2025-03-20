@@ -16,13 +16,13 @@ uvicorn main:app --host 0.0.0.0 --port 8082
 ---
  This app.py backend provides:
 
-✅ AI-Powered Mock Interviews (Structured sessions with AI feedback)
+✅ AI-Powered Mock Interviews (Structured sessions with AI feedback),
 ✅ AI Interview Insights (Performance analysis & improvement tips)
-✅ Personalized AI Interview Coach (Real-time AI-generated advice)
-✅ AI-Driven Question Bank (Dynamic, resume-based questions)
-✅ Adaptive Interview Difficulty (AI adjusts based on performance)
-✅ Customizable AI Voice for Interviewers (AI-generated voice responses)
-✅ Live AI Chat (Instant AI support for interview doubts)
+✅ Personalized AI Interview Coach (Real-time AI-generated advice),
+✅ AI-Driven Question Bank (Dynamic, resume-based questions),
+✅ Adaptive Interview Difficulty (AI adjusts based on performance),
+✅ Customizable AI Voice for Interviewers (AI-generated voice responses),
+✅ Live AI Chat (Instant AI support for interview doubts),
 
 
 ---
