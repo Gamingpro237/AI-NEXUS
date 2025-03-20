@@ -29,18 +29,13 @@ uvicorn main:app --host 0.0.0.0 --port 8082
 
 📌 Installation Guide
 
-1️⃣ Clone the Repository
 
-```bash
-git clone https://github.com/your-username/ai-nexus-backend.git
-cd ai-nexus-backend
-```
-2) Install Dependencies
+1) Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
-3) Set Up OpenAI API Key
+2) Set Up OpenAI API Key
 
 This project requires an OpenAI API Key for AI-powered features.
 
