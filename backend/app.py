@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, send_file
 from flask_cors import CORS
 import openai
 import random
@@ -172,7 +172,7 @@ def serve_audio(filename):
 
 @app.route('/')
 def home():
-    return send_from_directory('static', 'index.html')
+    return send_file('index.html')
 # ------------------------- RUNNING THE APP ------------------------- #
 if __name__ == '__main__':
     if not os.path.exists("audio"):
