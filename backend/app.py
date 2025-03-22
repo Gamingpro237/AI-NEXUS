@@ -170,6 +170,9 @@ def chat():
 def serve_audio(filename):
     return send_from_directory("audio", filename)
 
+@app.route('/')
+def home():
+    return jsonify({"message": "Welcome to AI Nexus Interview Assistant API!"})
 # ------------------------- RUNNING THE APP ------------------------- #
 if __name__ == '__main__':
     if not os.path.exists("audio"):
